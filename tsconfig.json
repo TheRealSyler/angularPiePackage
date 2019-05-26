@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "angular-pie": [
+        "dist/angular-pie"
+      ],
+      "angular-pie/*": [
+        "dist/angular-pie/*"
+      ]
+    }
   }
 }

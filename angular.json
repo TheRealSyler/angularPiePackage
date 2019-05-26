@@ -134,6 +134,41 @@
           }
         }
       }
+    },
+    "angular-pie": {
+      "root": "projects/angular-pie",
+      "sourceRoot": "projects/angular-pie/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-pie/tsconfig.lib.json",
+            "project": "projects/angular-pie/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-pie/src/test.ts",
+            "tsConfig": "projects/angular-pie/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-pie/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-pie/tsconfig.lib.json",
+              "projects/angular-pie/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angularPiePackage"

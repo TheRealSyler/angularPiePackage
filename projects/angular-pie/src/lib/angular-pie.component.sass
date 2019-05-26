@@ -1,0 +1,42 @@
+$C1: #5595ee
+$f: ease
+
+.hide
+    display: none
+#container
+    position: absolute
+    background: #00000000
+    .pieSlice
+        position: absolute
+        background: #222
+        display: flex
+        align-items: center
+        justify-content: center
+        border-radius: 12px
+        border: solid 1px #515f86
+        transition: all 50ms ease-in
+        div
+            background: #00000000
+            margin: 0
+            max-width: 100%
+            max-height: 100%
+    .selected
+        border: solid 1px $C1
+        background: #334157
+        transition: all 50ms ease-in
+    .active
+        border: solid 1px $C1
+        background: #5286df
+        transition: all 50ms ease-in
+    #circle
+        background: #000
+        border: solid 5px $C1
+        box-sizing: border-box
+        border-radius: 50%
+        margin: 0
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        background: #000000
+        border: solid 2px #222

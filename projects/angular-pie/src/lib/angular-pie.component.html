@@ -1,0 +1,14 @@
+<div id="container" [ngClass]="{'hide': !pie.show}" [style.top.px]="pie.y" [style.left.px]="pie.x"
+    [style.width.px]="pie.size" [style.height.px]="pie.size">
+    <div (mouseleave)="pie.activate($event)" (mouseup)="pie.mouseUp($event)" (mousemove)="pie.select($event)"
+        id="circle" [style.width.px]="pie.innerSize" [style.height.px]="pie.innerSize">
+    </div>
+    <ng-container *ngFor="let item of pie.content">
+        <div (click)="pie.activate($event)"
+            [ngClass]="{'pieSlice': true, 'active': pie.active === item.index,'selected': pie.selected === item.index}"
+            [style.top.px]="item.y" [style.left.px]="item.x" [style.width.px]="pie.sliceX"
+            [style.height.px]="pie.sliceY">
+            <div> {{item.content.title}} </div>
+        </div>
+    </ng-container>
+</div>
