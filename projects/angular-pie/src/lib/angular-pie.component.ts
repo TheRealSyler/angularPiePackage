@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularPieService } from './angular-pie.service';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'lib-angular-pie',

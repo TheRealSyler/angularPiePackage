@@ -1,14 +1,30 @@
-<div id="container" [ngClass]="{'hide': !pie.show}" [style.top.px]="pie.y" [style.left.px]="pie.x"
-    [style.width.px]="pie.size" [style.height.px]="pie.size">
-    <div (mouseleave)="pie.activate($event)" (mouseup)="pie.mouseUp($event)" (mousemove)="pie.select($event)"
-        id="circle" [style.width.px]="pie.innerSize" [style.height.px]="pie.innerSize">
+<div id="container" [ngClass]="{'hide': !pie.show}"
+    [ngStyle]="{'width.px': pie.options.size, 'height.px': pie.options.size, 'left.px': pie.x, 'top.px': pie.y}">
+
+    <div id="circle" (mouseleave)="pie.circleMouseleave($event)" (mousedown)="pie.circleMousedown()"
+        (mouseup)="pie.circleMouseUp($event)" (mousemove)="pie.select($event)" [ngStyle]="{'height.px': pie.options.circleSize, 'width.px': pie.options.circleSize,
+    'border-color': pie.options.circleBorderColor,'background-color': pie.options.circleBackgroundColor,
+    'border-width.px': pie.options.circleBorderWidth, 'z-index': pie.innerCircleZindex}">
     </div>
-    <ng-container *ngFor="let item of pie.content">
-        <div (click)="pie.activate($event)"
-            [ngClass]="{'pieSlice': true, 'active': pie.active === item.index,'selected': pie.selected === item.index}"
-            [style.top.px]="item.y" [style.left.px]="item.x" [style.width.px]="pie.sliceX"
-            [style.height.px]="pie.sliceY">
-            <div> {{item.content.title}} </div>
+
+    <ng-container *ngFor="let item of pie.slices">
+        <div (click)="pie.activate($event)" (mouseup)="pie.mouseUp($event)" (mousedown)="pie.setActiveColor($event)"
+            class="pieSlice" [ngStyle]="{'width.px': pie.options.sliceX, 
+    'height.px': pie.options.sliceY, 'left.px': item.x,'top.px': item.y,'border-color': item.borderColor,
+    'border-width.px': pie.options.borderWidth, 'border-radius.px': pie.options.borderRadius,
+     'font-family': pie.options.font,'background-color': item.color, 'font-size.rem': pie.options.fontSize}">
+            <img [src]="item.content.imgData.src" [hidden]="item.content.disableImg" [ngStyle]="{'width.px' : item.content.imgData.width, 'height.px': item.content.imgData.height,
+        'position': 'absolute', 'left.px': item.content.imgData.left, 'top.px': item.content.imgData.top}">
+            {{item.content.title}}
         </div>
     </ng-container>
+
+    <div id="selector" (mousedown)="pie.deactivate()" (mousemove)="pie.select($event)" (mouseup)="pie.mouseUp($event)"
+        [ngClass]="{'hide': !pie.show}">
+    </div>
+
+    <div id="outerActivationCircle" [ngClass]="{'hide': !pie.show}" (mouseleave)="pie.outerActivationCircle($event)"
+        (mouseup)="pie.mouseUp($event)" (mousedown)="pie.deactivate()" (mousemove)="pie.select($event)" [ngStyle]="{'width.px': pie.options.size + pie.options.sliceX, 'height.px': pie.options.size + pie.options.sliceY,
+       'left.px': pie.x - pie.options.sliceX / 2, 'top.px': pie.y - pie.options.sliceY / 2}">
+    </div>
 </div>
