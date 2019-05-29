@@ -1,19 +1,38 @@
 import { PieSlice } from './pie-slice';
 import { PieOptions } from './pie-options';
 import { Injectable } from '@angular/core';
+import { PieSliceInternal } from './pie-slice-internal';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AngularPieService {
+  /**
+   * INTERNAL
+   */
   x: number;
+  /**
+   * INTERNAL
+   */
   y: number;
+  /**
+   * INTERNAL
+   */
   show = false;
-  activated = false;
-  selected = 0;
-  active = 0;
+  private activated = false;
+  private selected = 0;
+  private active = 0;
+  /**
+   * INTERNAL
+   */
   innerCircleZindex = 2100;
-  slices = [];
+  /**
+   * INTERNAL
+   */
+  slices: PieSliceInternal[] = [];
+  /**
+   * INTERNAL
+   */
   options: PieOptions = {
     borderColor: '#334157',
     borderColorHover: '#517197',
@@ -44,7 +63,7 @@ export class AngularPieService {
     disableOuterActivation: false,
     disableInnnerMouseup: false
   };
-  emptySlice: PieSlice = {
+  private emptySlice: PieSlice = {
     title: '',
     func: '',
     args: [],
@@ -215,6 +234,9 @@ export class AngularPieService {
       return this.active;
     }
   }
+  /**
+   * INTERNAL
+   */
   activate(event) {
     if (!this.activated) {
       const direction = this.getDirection(event);
@@ -228,20 +250,24 @@ export class AngularPieService {
     this.activated = true;
     this.setColors();
     if (this.active !== 0) {
-      const funcName = this.slices[this.active - 1].content.func;
-      const args = this.slices[this.active - 1].content.args;
-      const context = this.slices[this.active - 1].content.context;
-      this.executeFunctionByName(funcName, context, args);
+      const { func, args, context } = this.slices[this.active - 1].content;
+      this.executeFunctionByName(func, context, args);
     }
     setTimeout(() => {
       this.show = false;
     }, this.options.hideDelay);
   }
+  /**
+   * INTERNAL
+   */
   deactivate() {
     setTimeout(() => {
       this.show = false;
     }, this.options.hideDelay);
   }
+  /**
+   * INTERNAL
+   */
   mouseUp(event) {
     if (!this.options.disableMouseUpActivation) {
       const direction = this.getDirection(event);
@@ -250,21 +276,33 @@ export class AngularPieService {
       }
     }
   }
+  /**
+   * INTERNAL
+   */
   circleMouseUp(event) {
     if (!this.options.disableInnnerMouseup) {
       this.activate(event);
     }
   }
+  /**
+   * INTERNAL
+   */
   circleMousedown() {
     if (this.options.disableCircleMousedownActvivation) {
       this.deactivate();
     }
   }
+  /**
+   * INTERNAL
+   */
   outerActivationCircle(event) {
     if (!this.options.disableOuterActivation) {
       this.activate(event);
     }
   }
+  /**
+   * INTERNAL
+   */
   circleMouseleave(event) {
     if (!this.options.disableInnerMouseleaveActivation) {
       this.activate(event);
@@ -272,6 +310,9 @@ export class AngularPieService {
       this.innerCircleZindex = 2025;
     }
   }
+  /**
+   * INTERNAL
+   */
   setActiveColor(event) {
     const direction = this.getDirection(event) - 1;
     if (this.slices[direction]) {
@@ -281,6 +322,9 @@ export class AngularPieService {
       }
     }
   }
+  /**
+   * INTERNAL
+   */
   select(event) {
     this.selected = this.getDirection(event);
     this.setColors();
@@ -291,7 +335,7 @@ export class AngularPieService {
    * @param context probably this
    * @param args function arguments Example arguments:  [ 'example string', 123, { example: ['object'] } ]
    */
-  executeFunctionByName(functionName: string, context: this, args: []) {
+  public executeFunctionByName(functionName: string, context: this, args: any[]) {
     if (context !== null) {
       const namespaces: string[] = functionName.split('.');
       const func = namespaces.pop();

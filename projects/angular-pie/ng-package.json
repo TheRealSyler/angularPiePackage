@@ -1,10 +1,11 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../../packagetest/angular-pie",
+  "dest": "../../dist/angular-pie",
   "lib": {
     "entryFile": "src/public-api.ts"
   },
   "test": {
-    "commennt": "../../dist/angular-pie"
+    "commennt": "../../dist/angular-pie",
+    "commennt2": "../../../packagetest/angular-pie"
   }
 }

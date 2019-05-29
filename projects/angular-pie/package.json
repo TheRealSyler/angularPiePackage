@@ -1,6 +1,15 @@
 {
   "name": "angular-pie",
-  "version": "0.1.7",
+  "version": "0.1.10",
+  "description": "Pie menu for angular",
+  "keywords": [
+    "Pie Menu",
+    "Angular"
+  ],
+  "bugs": {
+    "url": "https://github.com/owner/project/issues",
+    "email": "project@hostname.com"
+  },
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0"
