@@ -1,15 +1,25 @@
 {
   "name": "angular-pie",
   "version": "0.1.10",
+  "author": {
+    "name": "Leonard Grosoli",
+    "email": "hileo77@gmail.com"
+  },
   "description": "Pie menu for angular",
   "keywords": [
     "Pie Menu",
     "Angular"
   ],
   "bugs": {
-    "url": "https://github.com/owner/project/issues",
-    "email": "project@hostname.com"
+    "url": "https://github.com/TheRealSyler/angularPiePackage/issues",
+    "email": "hileo77@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheRealSyler/angularPiePackage",
+    "directory": "projects/angular-pie/react-dom"
+  },
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0"
