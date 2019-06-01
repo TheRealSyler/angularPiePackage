@@ -49,6 +49,10 @@ export interface PieOptions {
    */
   font?: string;
   /**
+   * Font Color of slice title.
+   */
+  fontColor?: string;
+  /**
    * Font size of slice title, in rem.
    */
   fontSize?: number;

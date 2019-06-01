@@ -9,10 +9,11 @@
 
     <ng-container *ngFor="let item of pie.slices">
         <div (click)="pie.activate($event)" (mouseup)="pie.mouseUp($event)" (mousedown)="pie.setActiveColor($event)"
-            class="pieSlice" [ngStyle]="{'width.px': pie.options.sliceX, 
+            class="pieSlice"
+            [ngStyle]="{'width.px': pie.options.sliceX, 
     'height.px': pie.options.sliceY, 'left.px': item.x,'top.px': item.y,'border-color': item.borderColor,
     'border-width.px': pie.options.borderWidth, 'border-radius.px': pie.options.borderRadius,
-     'font-family': pie.options.font,'background-color': item.color, 'font-size.rem': pie.options.fontSize}">
+     'font-family': pie.options.font,'background-color': item.color, 'font-size.rem': pie.options.fontSize, 'color': pie.options.fontColor}">
             <img [src]="item.content.imgData.src" [hidden]="item.content.disableImg" [ngStyle]="{'width.px' : item.content.imgData.width, 'height.px': item.content.imgData.height,
         'position': 'absolute', 'left.px': item.content.imgData.left, 'top.px': item.content.imgData.top}">
             {{item.content.title}}

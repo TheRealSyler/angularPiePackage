@@ -46,6 +46,7 @@ export class AngularPieService {
     circleBorderWidth: 2,
     oneActiveColor: true,
     font: 'Verdana',
+    fontColor: '#eee',
     fontSize: 1,
     size: 180,
     circleSize: 80,
